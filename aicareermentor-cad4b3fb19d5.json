@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "aicareermentor",
+  "private_key_id": "cad4b3fb19d53e5035cefdef28a790f05c7e90cc",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDMDIIQ8mDgMUEa\nUVjBljGGiwer3Z1m+M8GGkrB07yudqdqmsGvFT6sDiIgXz2S8w8tNJv+LTBwDL4C\nc2mDHnsORHtX94XGQwCDRyyfr5RHvjytTYO32Iel8lurGKrmfwoOEvlWG7XrlKcd\nqvMvmvJd5rCRxGiOcRxbZQnCuUo/isLN4MN6wGV6JrV8FONE0To7c39AuPxzFJ3a\nvkLYWUGzaN7J+xpcCTRDe13ssbRGXWVddCaH0ejB/TirzxW57T2Y5EJiot4KUo6W\nWyrCFEG9pjQ2Pum21zG9CdCiuUc1e0CuUbwzEjsNFQ0QIgOXBvxX1EGZ7MVDkK5n\nYY83KJlNAgMBAAECggEAHYQRrHHjIYr+Z9gshpQ7RcMGsQ21nxeOmsti1PbT7Eit\nnvYT3kescSb6OMSOG5udLmTVy8atowe01JXtRVI7aqztSqQ7bZpzkInTIqY7RMV3\n8Xms/AMOXCrap71Bu2XVBoQoHRSVFCbEpb38v34iYQLlt7A5j6E9ANt0tf4nh1lB\nA8MJ90AKRsFDECXS2ScMu1HbWaLS0NVyrG83/PuUkRRUWsNuZLrA9dMnx95wHM4n\nloiCA/gqexHpIO2Aj9Kh/MxSvloQUhdfEAEhEfIg9AKe0vhqnyzNl3QQfVb90buK\nK6WbN9Wzf+W13AVNsZIsv7abla+7a9qkva5M/yzl4QKBgQDnu4sHUZN3fM2+SdlS\nHS+ck67LZ2OI2Z4n5Sfhcpr4Ukhh4e8/PcJ4URTk81A8D8C9ABYP4vIq3TEkTagW\nJlwrz4tgIVWMFhQNGrimrfgqjVTkJaD2/Dbe1ARQ3YTDEdr5xlxr2cAVAkhFf/iU\nD+YsnYlbuNxuwCGsInKyB+Q3SwKBgQDhasydbBeARutjLM7SNWf98UIJvG9BYYC8\nVeMrRom/o9ttKRQIsnHJipfK/Dy+jYEaTc99yYpzRlNrWkz65VtxuIrMy6ZcpMCG\n5pD8+XOBhxES/g7/s7qNH9luBIRdBHsDhoh2p+6u2z1kyfk2vcnLknOjqChJq6sM\n2J42CuwaxwKBgAXyiETt0Q0WBOnHV26GFTy9hZTu2F0gyLBZb0aX/GY3Jmhstgk3\nepA/9HtTy1FfTiELqYVK29BB0QsPeyrmXSM6tmcHM/zebDFR6D9O47mj2vPoC1OL\ncZUSd/HjXY7sHGSgtKqH8igX4Ob3u9eA+PVYLbhO7EljYPncAHmVPkQ1AoGBAK8B\n3MQnhINqDBweUKAxKICmi0/FxVasXWdbAxi5Ff78N0KjztMFv4PqnvjQJlUGxYHn\ngT02eNAQfHlvTS7JXNqInPJs9ccdff/+B/jvrnaUp3PoXTq2jhI89PEOfrk83kiZ\nbV859/w3aI3UpTCT3pS3KiKYTlcL+avqjcKFblNHAoGBAIb5sJM8mozOAfPUz25o\nfNxGQVKgG8jk/y/DDkQ0RqTZXPxwWzJHxuSx+aMOYGOCX2mqHhOeeRSs/kPxTiPp\n+kFv/4hst7zlHyjxnG3Itg1hi7pVvFi+jb3Rp3d+K4mZBBMlzs/wIiT9abf57mgM\nESbL73cE+8bxS4DZ1m0RBqNu\n-----END PRIVATE KEY-----\n",
+  "client_email": "primary@aicareermentor.iam.gserviceaccount.com",
+  "client_id": "108033763307194910174",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/primary%40aicareermentor.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

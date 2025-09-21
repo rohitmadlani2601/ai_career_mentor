@@ -20,4 +20,4 @@ COPY . .
 # Run both the backend and Streamlit app.
 # The backend runs on port 8000 and is accessible from within the container.
 # The Streamlit app runs on the port provided by Cloud Run.
-CMD ["sh", "-c", "python backend.py --host 0.0.0.0 --port 8000 & streamlit run app.py --server.port=$PORT --server.address=0.0.0.0"]
+CMD ["sh", "-c", "gunicorn --bind 0.0.0.0:8000 backend:app & streamlit run app.py --server.port=$PORT --server.address=0.0.0.0"]

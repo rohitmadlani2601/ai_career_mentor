@@ -22,14 +22,15 @@ CORS(app)
 scheduler = BackgroundScheduler()
 scheduler.start()
 
-SMTP_USER = os.environ.get("EMAIL_USER")
-SMTP_PASS = os.environ.get("EMAIL_PASS")
+SMTP_USER = "rohitmadlani2006@gmail.com"
+SMTP_PASS = "npdj tdgo pugd qrfr"   # App password (not your login password)
 SMTP_SERVER = "smtp.gmail.com"
 SMTP_PORT = 587
 
 # ---------------- Gemini Setup ---------------- #
 GENAI_API_KEY = os.environ.get("GOOGLE_API_KEY")  # Use your direct Gemini API key
 genai.configure(api_key=GENAI_API_KEY)
+model = genai.GenerativeModel("gemini-1.5-flash")
 GENAI_MODEL_NAME = os.environ.get("GENAI_MODEL_NAME", "gemini-1.5-flash")
 
 # ---------------- Speech-to-Text Setup ---------------- #
@@ -102,13 +103,12 @@ def career_advice():
         profile = data.get("profile", "")
         model = genai.GenerativeModel(GENAI_MODEL_NAME)
         response = model.generate_content(
-            f"Act as a career advisor. The profile is: {profile}. Give career advice."
+            f"Act as a career advisor. The profile is: {profile}. Give career advice along with skills that should be learned."
         )
         return jsonify({"advice": response.text})
     except Exception as e:
         return jsonify({"error": str(e)})
 
-# --- 4. Job Suggestor ---
 # --- 4. Job Suggestor ---
 @app.route("/job_suggestor", methods=["POST"])
 def job_suggestor():
@@ -156,40 +156,40 @@ def job_suggestor():
 # --- 5. Mock Interview Questions Generation ---
 @app.route("/mock_interview", methods=["POST"])
 def mock_interview():
-    data = request.get_json()
+    data = request.json
     role = data.get("role", "")
 
-    if not role:
-        return jsonify({"questions": []})
-
-    prompt = f"""
-    You are an HR expert. Generate 5 realistic interview questions for a candidate applying as {role}.
-    Return ONLY a JSON array of strings. Example:
-    ["Question 1", "Question 2", ...]
-    """
+    if not role.strip():
+        return jsonify({"error": "Role required"}), 400
 
     try:
-        model = genai.GenerativeModel("gemini-1.5-flash")
-        response = model.generate_content(prompt)
-        text = response.text.strip()
+        prompt = f"""
+        Generate 5 realistic interview questions for the role of {role}.
+        Return ONLY a valid JSON array of strings.
+        Example: ["Question 1", "Question 2", "Question 3"]
+        """
 
-        # Ensure valid JSON
-        if text.startswith("["):
-            questions = json.loads(text)
-        else:
-            # fallback: split by lines if not JSON
-            questions = [q.strip() for q in text.splitlines() if q.strip()]
+        response = model.generate_content(prompt)
+        raw_text = response.text.strip()
+
+        # --- Clean common Gemini formatting issues ---
+        if raw_text.startswith("```"):
+            raw_text = raw_text.split("```")[1]  # remove markdown fences
+        raw_text = raw_text.replace("```json", "").replace("```", "").strip()
+
+        try:
+            questions = json.loads(raw_text)
+        except Exception:
+            # fallback: split into lines if JSON fails
+            questions = [q.strip("-• ").strip() for q in raw_text.split("\n") if q.strip()]
+
+        # make sure we only return non-empty strings
+        questions = [q for q in questions if isinstance(q, str) and q.strip()]
+
+        return jsonify({"questions": questions})
 
     except Exception as e:
-        print("Error generating questions:", e)
-        # fallback questions
-        questions = [
-            f"What motivates you to apply for {role}?",
-            f"Describe a challenging project you handled in {role}-related tasks.",
-            f"How do you keep your skills updated for {role}?",
-        ]
-
-    return jsonify({"questions": questions})
+        return jsonify({"error": str(e)}), 500
 
 @app.route("/mock/evaluate", methods=["POST"])
 def evaluate_answer():

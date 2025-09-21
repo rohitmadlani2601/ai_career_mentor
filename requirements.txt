@@ -1,0 +1,10 @@
+streamlit
+flask
+requests
+google-cloud-speech
+PyPDF2
+pdfplumber
+apscheduler
+gunicorn
+flask-cors
+google-generativeai

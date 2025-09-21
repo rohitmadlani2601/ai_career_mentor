@@ -1,27 +1,23 @@
-# Use a base image with Python pre-installed.
+# Use a Python base image.
 FROM python:3.9-slim
 
-# Set environment variables to configure Streamlit.
-ENV STREAMLIT_SERVER_PORT=8501
-ENV STREAMLIT_SERVER_ADDRESS=0.0.0.0
-
-# Expose the port where the backend will listen.
-EXPOSE 8080
-
-# Expose the port where Streamlit will run.
-EXPOSE 8501
-
-# Set the working directory inside the container.
+# Set working directory.
 WORKDIR /app
 
-# Copy the requirements.txt file and install dependencies.
-# This is a key step to ensure that all necessary libraries are installed.
+# Expose the ports. Cloud Run will route traffic to $PORT.
+# The backend will run on a separate, internal port.
+ENV PORT 8080
+EXPOSE $PORT
+EXPOSE 8000
+
+# Copy and install dependencies first for caching.
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy all the application files (your Streamlit app, backend, etc.) into the container.
+# Copy all your application files into the container.
 COPY . .
 
-# Command to run both the backend and Streamlit app.
-# The `sh -c` command allows you to run multiple commands in the background.
-CMD ["sh", "-c", "python backend.py & streamlit run app.py --server.port=$STREAMLIT_SERVER_PORT --server.address=$STREAMLIT_SERVER_ADDRESS"]
+# Run both the backend and Streamlit app.
+# The backend runs on port 8000 and is accessible from within the container.
+# The Streamlit app runs on the port provided by Cloud Run.
+CMD ["sh", "-c", "python backend.py --host 0.0.0.0 --port 8000 & streamlit run app.py --server.port=$PORT --server.address=0.0.0.0"]

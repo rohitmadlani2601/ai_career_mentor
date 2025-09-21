@@ -8,7 +8,7 @@ import datetime
 # -------------------------
 # Config
 # -------------------------
-BACKEND_URL = "http://127.0.0.1:5000"  # change if your backend lives elsewhere
+BACKEND_URL = "http://localhost:8000"  # change if your backend lives elsewhere
 st.set_page_config(page_title="AI Career Mentor", page_icon="🎓", layout="wide")
 
 # -------------------------
